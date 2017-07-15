@@ -345,11 +345,11 @@ class VcView(melddoc.MeldDoc, gnomeglade.Component):
             def vc_installed(cmd):
                 if not cmd:
                     return True
-                try:
-                    return not vc._vc.call(["which", cmd])
-                except OSError:
-                    if os.name == 'nt':
-                        return not vc._vc.call(["where", cmd])
+
+                if os.name == 'nt':
+                    return not vc._vc.call(["where", cmd])
+
+                return not vc._vc.call(["which", cmd])
 
             if not vc_installed(avc.CMD):
                 # TRANSLATORS: this is an error message when a version control
