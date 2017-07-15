@@ -222,6 +222,7 @@ class MeldWindow(gnomeglade.Component):
         self.scheduler = task.LifoScheduler()
         self.scheduler.connect("runnable", self.on_scheduler_runnable)
         self.widget.set_default_size(app.prefs.window_size_x, app.prefs.window_size_y)
+        self.widget.maximize()
         self.ui.ensure_update()
         self.widget.show()
         self.diff_handler = None
